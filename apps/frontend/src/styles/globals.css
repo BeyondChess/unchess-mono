@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tw-clr-primary-200: 249 219 186; /* Light peach */
+  --tw-clr-primary-300: 91 153 194; /* Light blue */
+  --tw-clr-primary-400: 26 72 112; /* Dark blue */
+  --tw-clr-primary-500: 31 49 111; /* Deep navy */
+
+  --clr-primary-200: rgb(var(--tw-clr-primary-200)); /* rgb(249, 219, 186) */
+  --clr-primary-300: rgb(var(--tw-clr-primary-300)); /* rgb(91, 153, 194) */
+  --clr-primary-400: rgb(var(--tw-clr-primary-400)); /* rgb(26, 72, 112) */
+  --clr-primary-500: rgb(var(--tw-clr-primary-500)); /* rgb(31, 49, 111) */
+}
+
+@layer base {
+  /* inter var - latin */
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: optional;
+    src: url("/apps/frontend/public/fonts/inter-var-latin.woff2")
+      format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  ::selection {
+    background: rgba(var(--tw-clr-primary-300) / 0.3);
+  }
+}
+
+@layer utilities {
+  .animated-underline {
+    background-image: linear-gradient(#33333300, #33333300),
+      linear-gradient(to right, var(--clr-primary-300), var(--clr-primary-400));
+    background-size:
+      100% 2px,
+      0 2px;
+    background-position:
+      100% 100%,
+      0 100%;
+    background-repeat: no-repeat;
+    transition: 0.3s ease;
+    transition-property: background-size, color, background-color, border-color;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animated-underline {
+      transition: none;
+    }
+  }
+  .animated-underline:hover,
+  .animated-underline:focus-visible,
+  .project-card:hover .animated-underline,
+  .project-card:focus-visible .animated-underline {
+    background-size:
+      0 2px,
+      100% 2px;
+  }
+
+  /* #region  /**=========== Animate Shadow =========== */
+  .animate-shadow {
+    @apply after:absolute after:inset-0 after:z-[-1] after:opacity-0 after:transition-opacity hover:after:opacity-100;
+    @apply after:shadow-md dark:after:shadow-none;
+  }
+  /* #endregion  /**======== Animate Shadow =========== */
+
+  /* #region  /**=========== Fade In =========== */
+  [data-fade] {
+    @apply translate-y-10 opacity-0 transition duration-300 ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100;
+  }
+  .fade-in-start [data-fade] {
+    @apply translate-y-0 opacity-100;
+  }
+  .fade-in-start [data-fade="1"] {
+    transition-delay: 100ms;
+  }
+  .fade-in-start [data-fade="2"] {
+    transition-delay: 200ms;
+  }
+  .fade-in-start [data-fade="3"] {
+    transition-delay: 300ms;
+  }
+  .fade-in-start [data-fade="4"] {
+    transition-delay: 400ms;
+  }
+  .fade-in-start [data-fade="5"] {
+    transition-delay: 500ms;
+  }
+  .fade-in-start [data-fade="6"] {
+    transition-delay: 600ms;
+  }
+  .fade-in-start [data-fade="7"] {
+    transition-delay: 700ms;
+  }
+  .fade-in-start [data-fade="8"] {
+    transition-delay: 800ms;
+  }
+}

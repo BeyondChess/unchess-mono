@@ -1,0 +1,22 @@
+{
+    "name": "@repo/clsxm",
+    "type": "module",
+    "scripts": {
+        "dev": "tsc --watch",
+        "build": "tsc"
+    },
+    "exports": {
+        "./clsxm": {
+            "types": "./src/clsxm.ts",
+            "default": "./dist/clsxm.js"
+        }
+    },
+    "devDependencies": {
+        "@repo/typescript-config": "workspace:*",
+        "typescript": "latest"
+    },
+    "dependencies": {
+        "clsx": "^2.1.1",
+        "tailwind-merge": "^2.5.2"
+    }
+}

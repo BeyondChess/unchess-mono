@@ -6,7 +6,9 @@
     "build": "tsc"
   },
   "exports": {
-    "./theme-provider": "./src/theme-provider.tsx"
+    "./theme-provider": "./src/theme-provider.tsx",
+    "./button": "./src/button.tsx",
+    "./input": "./src/input.tsx"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",

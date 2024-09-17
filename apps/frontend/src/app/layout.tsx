@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import { ThemeProvider } from "@repo/components/theme-provider";
 import { PreloadProvider } from "@/context/PreloadContext";
+import Footer from "@/components/Footer";
+import Sidebar from "@/components/Sidebar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "Unchess",
@@ -16,13 +18,18 @@ export default function RootLayout({
   return (
     <html lang="en" className="antialiased">
       <head>{/* You can add any additional head tags here */}</head>
-      <body>
+      <body className="">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
         >
-          <PreloadProvider>{children}</PreloadProvider>
+          <div className="flex flex-row">
+            <Sidebar />
+            <PreloadProvider>{children}</PreloadProvider>
+          </div>
+
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

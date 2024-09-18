@@ -4,6 +4,7 @@ import { PreloadProvider } from "@/context/PreloadContext";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Unchess",
@@ -24,12 +25,13 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem={false}
         >
-          <div className="flex flex-row">
-            <Sidebar />
-            <PreloadProvider>{children}</PreloadProvider>
-          </div>
-
-          <Footer />
+          <SessionProvider>
+            <div className="flex flex-row">
+              <Sidebar />
+              <PreloadProvider>{children}</PreloadProvider>
+            </div>
+            <Footer />
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

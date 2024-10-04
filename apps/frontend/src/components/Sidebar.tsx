@@ -9,6 +9,11 @@ import {
   Search,
   UserPlus,
   LogOut,
+  Home,
+  PlayCircle,
+  Dice5,
+  Newspaper,
+  Users,
 } from "lucide-react";
 import ThemeButton from "./Themebutton";
 import Link from "next/link";
@@ -55,6 +60,7 @@ const Sidebar = () => {
           {links.map((item) => (
             <Link href={item.href} key={item.label}>
               <Button
+                asChild
                 variant="ghost"
                 className={`w-full justify-start hover:bg-primary-400 dark:hover:bg-primary-300 transition-colors py-2 text-lg ${
                   isMinimized ? "px-2" : "px-4"
@@ -62,9 +68,12 @@ const Sidebar = () => {
                 aria-label={item.label}
               >
                 <span className="flex items-center text-primary-50 dark:text-gray-900">
-                  {isMinimized
-                    ? item.label.charAt(0).toUpperCase()
-                    : item.label.charAt(0).toUpperCase() + item.label.slice(1)}
+                  {isMinimized ? (
+                    <item.icon className="h-8 w-8" />
+                  ) : (
+                    <item.icon className="h-6 w-6" />
+                  )}
+                  {!isMinimized && <span className="ml-4">{item.label}</span>}
                 </span>
               </Button>
             </Link>
@@ -73,6 +82,7 @@ const Sidebar = () => {
 
         {/* Footer Section */}
         <div className="space-y-4 mt-auto">
+          {/* Search Input */}
           {!isMinimized && (
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -85,6 +95,7 @@ const Sidebar = () => {
             </div>
           )}
 
+          {/* User Section */}
           {session ? (
             <div className="flex flex-col space-y-2">
               <div className="flex items-center space-x-2">
@@ -102,36 +113,46 @@ const Sidebar = () => {
                   </span>
                 )}
               </div>
+              {/* Logout Button */}
               <Button
                 onClick={() => signOut()}
-                className="w-full justify-start flex items-center hover:bg-red-500 dark:hover:bg-red-400"
+                className={`w-full justify-start flex items-center ${
+                  isMinimized ? "px-2" : "px-4"
+                } hover:bg-red-500 dark:hover:bg-red-400 transition-colors`}
                 aria-label="Log Out"
               >
-                <LogOut className="ml-2 h-4 w-4" />
-                {!isMinimized && <span>Log Out</span>}
+                <LogOut className="h-6 w-6" />
+                {!isMinimized && <span className="ml-2">Log Out</span>}
               </Button>
             </div>
           ) : (
             <>
+              {/* Sign Up Button */}
               <Button
-                className="w-full justify-start flex items-center hover:bg-primary-400 dark:hover:bg-primary-300"
+                className={`w-full justify-start flex items-center ${
+                  isMinimized ? "px-2" : "px-4"
+                } hover:bg-primary-400 dark:hover:bg-primary-300 transition-colors`}
                 variant="outline"
                 aria-label="Sign Up"
               >
-                <UserPlus className="mr-2 h-4 w-4" />
-                {!isMinimized && <span>Sign Up</span>}
+                <UserPlus className="h-6 w-6" />
+                {!isMinimized && <span className="ml-2">Sign Up</span>}
               </Button>
+              {/* Log In Button */}
               <Button
-                className="w-full justify-start flex items-center hover:bg-green-500 dark:hover:bg-green-400"
+                className={`w-full justify-start flex items-center ${
+                  isMinimized ? "px-2" : "px-4"
+                } hover:bg-green-500 dark:hover:bg-green-400 transition-colors`}
                 onClick={() => signIn("github")}
                 aria-label="Log In"
               >
-                <LogIn className="mr-2 h-4 w-4" />
-                {!isMinimized && <span>Log In</span>}
+                <LogIn className="h-6 w-6" />
+                {!isMinimized && <span className="ml-2">Log In</span>}
               </Button>
             </>
           )}
 
+          {/* Theme Toggle */}
           <ThemeButton />
         </div>
       </aside>
@@ -142,9 +163,9 @@ const Sidebar = () => {
 export default Sidebar;
 
 const links = [
-  { href: "/", label: "home" },
-  { href: "/play", label: "play" },
-  { href: "/odds", label: "odds" },
-  { href: "/news", label: "news" },
-  { href: "/community", label: "community" },
+  { href: "/", label: "home", icon: Home },
+  { href: "/play", label: "play", icon: PlayCircle },
+  { href: "/odds", label: "odds", icon: Dice5 },
+  { href: "/news", label: "news", icon: Newspaper },
+  { href: "/community", label: "community", icon: Users },
 ];

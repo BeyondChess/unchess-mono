@@ -1,0 +1,19 @@
+{
+  "name": "@repo/gameroom",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./gameroom": {
+      "types": "./src/GameRoom.ts",
+      "default": "./dist/GameRoom.js"
+    }
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "latest"
+  },
+  "dependencies": {}
+}
